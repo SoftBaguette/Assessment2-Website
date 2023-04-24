@@ -67,3 +67,38 @@ function animate() {
 
 // Start the animation loop
 animate();
+
+let slideIndex = 0;
+
+function plusSlides(n) {
+  showSlides((slideIndex += n));
+}
+
+function showSlides(n) {
+  const slides = document.getElementsByClassName("slide");
+
+  if (n >= slides.length) {
+    slideIndex = 0;
+  }
+  if (n < 0) {
+    slideIndex = slides.length - 1;
+  }
+
+  // Add this line
+  for (let slide of slides) {
+    slide.style.display = "none";
+  }
+
+  // Modify this line
+  slides[slideIndex].style.display = "block";
+  
+}
+
+showSlides(0);
+
+const images = document.querySelectorAll(".slide img");
+for (let i = 0; i < images.length; i++) {
+  images[i].addEventListener("click", function() {
+    this.classList.toggle("expanded");
+  });
+}
